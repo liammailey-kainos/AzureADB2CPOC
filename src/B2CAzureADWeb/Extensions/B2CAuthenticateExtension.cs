@@ -15,9 +15,7 @@ namespace B2CAzureADWeb.Extensions
             // ReSharper disable once InconsistentNaming
             var azureADB2CSettings = new AzureADB2CSettings();
             config.GetSection("AzureADB2CSettings").Bind(azureADB2CSettings);
-
-            services.AddHttpClient();
-            services.AddControllersWithViews();
+            
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;

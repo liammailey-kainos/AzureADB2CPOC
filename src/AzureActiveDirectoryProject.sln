@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "B2CAzureADApi", "B2CAzureAD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2CAzureADApi2", "B2CAzureADApi2\B2CAzureADApi2.csproj", "{7E0358C2-0C2C-4215-B58D-6E456E4EBECE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B2CAzureADWeb2", "B2CAzureADWeb2\B2CAzureADWeb2.csproj", "{80F39BE8-E0AB-4749-86D1-E3CFD33334C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7E0358C2-0C2C-4215-B58D-6E456E4EBECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E0358C2-0C2C-4215-B58D-6E456E4EBECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E0358C2-0C2C-4215-B58D-6E456E4EBECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F39BE8-E0AB-4749-86D1-E3CFD33334C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F39BE8-E0AB-4749-86D1-E3CFD33334C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F39BE8-E0AB-4749-86D1-E3CFD33334C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F39BE8-E0AB-4749-86D1-E3CFD33334C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

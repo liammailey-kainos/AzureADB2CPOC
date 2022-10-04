@@ -2,15 +2,19 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Welcome</h1>
+<h1>Web app 1</h1>
 <p>This app provides a POC for authenticating with Azure AD B2C.</p>
 <p>A B2C tenant has been created at B2CAzureADEPR.onmicrosoft.com.</p>
-<p>Within this tenant two applications have been registered:</p>
+<p>Within this tenant two web applications have been created:</p>
 <ol>
-    <li>B2CAzureADEPRWeb -This web front end, which represents the EPR application and is secured with Azure B2C.</li>
-    <li>B2CAzureADEPRApi - A sample web service that is secured with same token as this web front end and has this token passed to it in an API call.</li>
+    <li>B2CAzureADEPRWeb -This web front end, which represents one EPR service and is secured with Azure B2C.</li>
+    <li>B2CAzureADEPRWeb2 - Another web front end which represents another EPR service and is also secured with Azure B2C.</li>
 </ol>
-
+<p>Within this tenant two web APIs have also been created. As sample web services that are secured with same token as the two web front ends and has this token passed to it in any API call.</p>
+<ol>
+    <li>B2CAzureADEPRApi</li>
+    <li>B2CAzureADEPRApi2</li>
+</ol>
 <p>Within the B2C tenant two user flows have been created:</p>
 <ol>
     <li>B2CSignUpIn - for signup, login, reset password</li>

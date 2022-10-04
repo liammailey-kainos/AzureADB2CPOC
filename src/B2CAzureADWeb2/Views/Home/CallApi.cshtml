@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "API call";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>This page called an API that required authentication with the token issued by AZURE AD B2C</p>
+
+<div class="alert @(ViewBag.IsSuccess == true ? "alert-success" : "alert-danger" )" role="alert">
+    The API call was @(ViewBag.IsSuccess == true ? "successful" : "not successful" ) and returned the following
+</div>
+
+<pre id="resultSpan">@ViewBag.Message</pre>
+
+@if(ViewBag.IsSuccess == true)
+{
+    @section Styles {   
+    <style>
+        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+        .string { color: green; }
+        .number { color: darkorange; }
+        .boolean { color: blue; }
+        .null { color: magenta; }
+        .key { color: red; }
+    </style>
+    }
+
+    @section Scripts {
+    <script>
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+
+        window.onload = function() {
+            var resultSpan = document.getElementById("resultSpan");
+            var prettyJson = syntaxHighlight(resultSpan.innerHTML);
+            resultSpan.innerHTML = prettyJson;
+        };
+    </script>
+    }
+}
