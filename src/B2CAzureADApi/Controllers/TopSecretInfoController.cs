@@ -1,4 +1,8 @@
+using System.Net.Http.Headers;
+using System.Text.Json;
 using B2CAzureADApi.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web.Resource;
@@ -11,28 +15,33 @@ namespace B2CAzureADApi.Controllers
     [RequiredScope(RequiredScopesConfigurationKey = "AzureADB2C:Scope")]
     public class TopSecretInfoController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
-        private readonly ILogger<TopSecretInfoController> _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public TopSecretInfoController(ILogger<TopSecretInfoController> logger)
+        public TopSecretInfoController(IHttpClientFactory httpClientFactory)
         {
-            _logger = logger;
+            _httpClientFactory = httpClientFactory;
         }
 
         [HttpGet(Name = "GetTopSecretInfo")]
-        public IEnumerable<TopSecretInfo> Get()
+        public async Task<IActionResult> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new TopSecretInfo
+            var results = new List<TopSecretInfo>();
+
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var client = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44312/WeatherForecast");
+
+            request.Headers.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, accessToken);
+            var response = await client.SendAsync(request);
+
+            return response.StatusCode switch
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                System.Net.HttpStatusCode.OK => Ok(
+                    JsonSerializer.Deserialize<List<TopSecretInfo>>(await response.Content.ReadAsStringAsync())),
+                System.Net.HttpStatusCode.Unauthorized => Unauthorized(),
+                _ => Problem(detail: response.ToString(), statusCode: (int)response.StatusCode)
+            };
         }
     }
 }

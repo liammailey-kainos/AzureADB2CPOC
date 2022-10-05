@@ -49,12 +49,14 @@ namespace B2CAzureADWeb.Controllers
         public async Task<IActionResult> CallApi()
         {
             await MakeApiCall("https://localhost:44364/TopSecretInfo");
+            ViewBag.ApiCall = "1";
             return View("CallApi");
         }
         
         public async Task<IActionResult> CallApi2()
         {
             await MakeApiCall("https://localhost:44312/WeatherForecast");
+            ViewBag.ApiCall = "2";
             return View("CallApi");
         }
 

@@ -3,7 +3,14 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>This page called an API that required authentication with the token issued by AZURE AD B2C</p>
+@if (ViewBag.ApiCall == "1")
+{
+    <p>This page called an API that required authentication with the token issued by AZURE AD B2C. The API in turn called a further API and passed the token for authentication</p>
+}
+else
+{
+    <p>This page called an API that required authentication with the token issued by AZURE AD B2C</p>
+}
 
 <div class="alert @(ViewBag.IsSuccess == true ? "alert-success" : "alert-danger" )" role="alert">
     The API call was @(ViewBag.IsSuccess == true ? "successful" : "not successful" ) and returned the following
