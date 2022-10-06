@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace B2CAzureADWeb2.Extensions
+namespace Common.Extensions
 {
     public static class JsonPrettifyExtension
     {

@@ -1,4 +1,4 @@
-using B2CAzureADWeb2.Extensions;
+using Common.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

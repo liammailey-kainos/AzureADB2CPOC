@@ -1,4 +1,4 @@
-﻿using B2CAzureADWeb2.Extensions;
+﻿using Common.Extensions;
 using B2CAzureADWeb2.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

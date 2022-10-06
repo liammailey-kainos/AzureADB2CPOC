@@ -1,4 +1,4 @@
-﻿namespace B2CAzureADWeb2.Models
+﻿namespace Common.Models
 {
     public class AzureADB2CSettings
     {

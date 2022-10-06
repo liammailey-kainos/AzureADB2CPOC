@@ -1,11 +1,13 @@
-﻿using B2CAzureADWeb2.Models;
+﻿using Common.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace B2CAzureADWeb2.Extensions
+namespace Common.Extensions
 {
     public static class B2CAuthenticationExtension
     {

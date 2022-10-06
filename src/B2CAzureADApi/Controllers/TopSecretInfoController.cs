@@ -27,8 +27,16 @@ namespace B2CAzureADApi.Controllers
         public async Task<IActionResult> Get()
         {
             var results = new List<TopSecretInfo>();
-
-            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            string? accessToken;
+            try
+            {
+                accessToken = await HttpContext.GetTokenAsync("B2C", "access_token");
+            }
+            catch
+            {
+                accessToken = await HttpContext.GetTokenAsync("AAD", "access_token");
+            }
+            
             var client = _httpClientFactory.CreateClient();
             var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44312/WeatherForecast");
 
